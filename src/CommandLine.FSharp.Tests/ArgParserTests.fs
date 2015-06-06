@@ -1,31 +1,32 @@
 ﻿namespace CommandLine.FSharp.Tests
 
-open Xunit
-open FsUnit.Xunit
-open CommandLine
-open CommandLine.FSharp
+    open CommandLine
 
-type FakeOptions() =
-    let mutable stringValue = ""
-    let mutable intSequence = Seq.empty<int>
-    let mutable boolValue = false
-    let mutable longValue = 0L
+    type public FakeOptions() = class
+        let mutable stringValue = ""
+//        let mutable intSequence = Seq.empty<int>
+//        let mutable boolValue = false
+//        let mutable longValue = 0L
 
-    [<Option(HelpText = "Define a string value here.")>]
-    member this.StringValue with get() = stringValue and set(value) = stringValue <- value
+        [<Option(HelpText = "Define a string value here.")>]
+        member this.StringValue with public get() = stringValue and public set(value) = stringValue <- value
 
-    [<Option('i', Min = 3, Max = 4, HelpText = "Define a int sequence here.")>]
-    member this.IntSequence with get() = intSequence and set(value) = intSequence <- value
+//        [<Option('i', Min = 3, Max = 4, HelpText = "Define a int sequence here.")>]
+//        member this.IntSequence with get() = intSequence and set(value) = intSequence <- value
+//
+//        [<Option('x', HelpText = "Define a boolean or switch value here.")>]
+//        member this.BoolValue with get() = boolValue and set(value) = boolValue <- value
+//
+//        [<Value(0)>]
+//        member this.LongValue with get() = longValue and set(value) = longValue <- value
+    end
 
-    [<Option('x', HelpText = "Define a boolean or switch value here.")>]
-    member this.BoolValue with get() = boolValue and set(value) = boolValue <- value
+    module parse_all_options =
+        open Xunit
+        open CommandLine.FSharp
 
-    [<Value(0)>]
-    member this.LongValue with get() = longValue and set(value) = longValue <- value
+        let parsed = ArgParser.ParseOptions<FakeOptions> ParserConfig.Default [| "--string"; "hello fsharp"; "-i3"; "-x"; "999" |]
 
-module ArgParserTests =
-    [<Fact>]
-    let Parse_all_options() =
-        let config = ParserConfig.Default
-        let parsed = ArgParser.ParseOptions<FakeOptions> config [| "--string"; "hello fsharp"; "-i3"; "-x"; "999" |]
-        "hello fsharp" |> should equal parsed.Value.StringValue
+        [<Fact>]
+        let parse_string_value() =
+            Assert.Equal("hello fsharp", parsed.Value.StringValue)
