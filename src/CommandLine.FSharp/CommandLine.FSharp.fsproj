@@ -9,9 +9,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>CommandLine.FSharp</RootNamespace>
     <AssemblyName>CommandLine.FSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Name>CommandLine.FSharp</Name>
     <ProductVersion>12.0.0</ProductVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

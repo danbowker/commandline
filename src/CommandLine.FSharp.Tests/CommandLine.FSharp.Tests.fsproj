@@ -52,6 +52,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <None Include="packages.config" />
     <Compile Include="ArgParserTests.fs" />
+    <Compile Include="Fakes.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">
@@ -69,6 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="xunit.abstractions">
