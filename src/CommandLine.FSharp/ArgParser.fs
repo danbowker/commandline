@@ -13,7 +13,10 @@ type public ParserConfig = {
     IgnoreUnknownArguments : bool;
     EnableDashDash : bool;
     ParsingCulture : CultureInfo;
-}
+} with
+    static member Default =
+        {CaseSensitive = false; HelpWriter = Console.Error; IgnoreUnknownArguments = false;
+            EnableDashDash = false; ParsingCulture = CultureInfo.InvariantCulture}
 
 module ArgParser =
     let private getComparer config =
